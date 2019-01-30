@@ -1,0 +1,87 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+.page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-image: linear-gradient(to left bottom, #3f3fc3, #0063d9, #0082e6, #009dea, #12b6eb);
+
+  .login_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fafafa;
+    padding: 1em;
+  }
+
+  .first_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 95%;
+    min-width: 35%;
+
+  }
+  .head_line{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 95%;
+    min-width: 35%;
+
+    h1{
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+    }
+    img{
+      height: 3em;
+      width: 3em;
+    }
+  }
+  .contForm{
+    min-width: 35%;
+    max-width: 95%;
+    background-color: #fafafa;
+    border-radius: 1em;
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.14);
+    padding: 2em;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2{
+      color: #444444;
+    }
+    label{
+      color: white;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+      background-color: white;
+    }
+    .cont_butt{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    button{
+      background-image: linear-gradient(to left bottom, #3f3fc3, #0063d9, #0082e6, #009dea, #12b6eb);
+      width: 6em;
+      color: #fafafa;
+      margin: 1em;
+    }
+  }
+}

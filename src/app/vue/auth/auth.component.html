@@ -1,0 +1,35 @@
+<!--This is the auth page-->
+
+<div class="page">
+  <div class="first_cont">
+    <div class="head_line">
+      <img src="../../assets/icons/factory_white_full.png">
+      <h1>PRODUCT REGISTRATION SERVICE</h1>
+    </div>
+    <div class="contForm">
+      <h2>CONNEXION</h2>
+      <mat-form-field color="white">
+        <input matInput placeholder="Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Enter your password" [formControl]="password" required>
+        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+      </mat-form-field>
+      <div class="cont_butt">
+        <!--Create a user is disable because we dont need it for now-->
+        <button mat-button (click)="signUp()"  disabled>SIGN UP</button>
+        <button mat-button (click)="signIn()" [disabled]="email.invalid || password.invalid">SIGN IN</button>
+      </div>
+    </div>
+    <div class="login_cont">
+      <p>Applicant : applicant@gmail.com</p>
+      <p>Regulator : regulator@gmail.com</p>
+      <p>Password : 12345678</p> <!--This is the best password ever-->
+    </div>
+  </div>
+
+</div>
+
+
+

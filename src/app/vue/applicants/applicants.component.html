@@ -1,0 +1,49 @@
+<div class="applicants_cont" *ngIf="!showOne">
+  <mat-card><h2>List of Applicants</h2></mat-card>
+  <mat-card>
+    <mat-list role="list">
+      <mat-list-item   mat-ripple role="listitem" *ngFor="let applicant of applicants">
+        <div class="items_cont" (click)="getOneApplicant(applicant)">
+          <p>Name : {{applicant.name}}</p>
+          <p>Id : {{applicant.userid}}</p>
+          <p>Email : {{ applicant.email}}</p>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
+
+<div class="applicants_cont" *ngIf="showOne">
+  <button mat-button
+          class="retour"
+          (click)="closeApplicant()"><img src="../../../assets/icons/left-arrow.svg"></button>
+  <mat-card>
+    <mat-card-title>Applicant information</mat-card-title>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <p>Id : {{theApplicant.userid}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.name">
+          <p>Name : {{theApplicant.name}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Email : {{theApplicant.email}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.adress">
+          <p>Address : {{theApplicant.address}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.phone_number">
+          <p>Phone number : {{theApplicant.phone_number}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.contry">
+          <p>Contry : {{theApplicant.contry}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.job">
+          <p>Post in the compagny : {{theApplicant.job}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,62 @@
+<div class="make_cont">
+  <mat-card>
+    <h2>Make an application</h2>
+  </mat-card>
+  <mat-card>
+
+    <!--Name input -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name of product</mat-label>
+        <input matInput placeholder="Name" [(ngModel)]="nameOfProduct">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+
+    <!--select the contry field -->
+    <h4>Contry of production</h4>
+    <mat-form-field>
+      <mat-select placeholder="Contry of production" [formControl]="contryControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let contry of contrys" [value]="contry">
+          {{contry.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="contryControl.hasError('required')">Please choose a contry</mat-error>
+      <mat-hint>{{contryControl.value?.sound}}</mat-hint>
+    </mat-form-field>
+
+    <!--select the ctype field -->
+    <h4>Type of product</h4>
+    <mat-form-field>
+      <mat-select placeholder="type of product" [formControl]="typeControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="typeControl.hasError('required')">Please choose a type</mat-error>
+    </mat-form-field>
+
+    <!--select the type field -->
+    <h4>Testing organanisation</h4>
+    <mat-form-field>
+      <mat-select placeholder="Testing organisation" [formControl]="testControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let test of tests" [value]="test">
+          {{test.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="testControl.hasError('required')">Please choose a testing organisation</mat-error>
+    </mat-form-field>
+
+  </mat-card>
+
+  <mat-card >
+    <button mat-button
+            (click)="submitApplication(nameOfProduct)"
+            *ngIf="!loader"
+            [disabled]="!testControl.value || !typeControl.value || !contryControl.value">Submit</button>
+    <div class="lds-ripple" *ngIf="loader"><div></div><div></div></div>
+  </mat-card>
+</div>

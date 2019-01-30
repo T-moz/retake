@@ -1,0 +1,44 @@
+<!--It's exactly the same thing as nav-applicant-->
+
+<app-head-nav style="max-width: 100%"></app-head-nav>
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)"
+               style="background-color: #444444; color: #fafafa; top: 5em">
+    <mat-toolbar style="top: 5em">Menu</mat-toolbar>
+    <mat-nav-list style="color: #fafafa">
+      <a mat-list-item (click)="showMake()" style="color: #fafafa">Registration Records</a>
+      <a mat-list-item  (click)="showMy()" style="color: #fafafa">Applicants</a>
+      <a mat-list-item  (click)="showhe()" style="color: #fafafa">Help</a>
+    </mat-nav-list>
+    <div class="credit">
+      <p>Matthieu Pernelle</p>
+      <p>ISEP</p>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Regulator Services</span>
+      <p *ngIf="authService.curentUser.name">Welcome back {{authService.curentUser.name}}.</p>
+      <button mat-button (click)="logout()" class="logout">Logout<img src="../../../assets/icons/logout.svg" style="color: #fafafa; height: 1em; margin-left: 0.5em"></button>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+    <app-registration-records *ngIf="showMakeApp"></app-registration-records>
+    <app-applicants *ngIf="showMyApp"></app-applicants>
+    <div class="help" *ngIf="showHelp">
+      <img src="../../../assets/icons/build_an_app.png">
+      <p>Sorry this page isn't ready yet...</p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+<div class="my_cont">
+  <mat-card>
+    <h2>My Applications</h2>
+  </mat-card>
+
+  <mat-card>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let oneProduct of MyProduct">
+        <div class="items_cont">
+          <p>Id : {{oneProduct.productid}}</p>
+          <p *ngIf="oneProduct.name">Name: {{oneProduct.name}}</p>
+          <p>Type : {{oneProduct.type}}</p>
+          <p>Date of production : {{oneProduct.date | date : 'dd.MMM.yyyy'}}</p>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
+

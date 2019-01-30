@@ -1,0 +1,144 @@
+<!--There is the template to do a research and the one to print the research -->
+
+<div class="regi_cont" *ngIf="showRecords">
+  <mat-card><h2>Registration Records</h2></mat-card>
+  <mat-card>
+    <mat-card-title>Search product</mat-card-title>
+    <mat-card-content>
+      <div class="search_cont">
+        <p>Select a research option :</p>
+        <mat-form-field>
+          <mat-select placeholder="Select By" [formControl]="selectControl" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let select of selects" [value]="select">
+              {{select.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="selectControl.hasError('required')">Please choose a option to make a research</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field *ngIf="selectControl.value.name === 'Contry'">
+          <mat-select placeholder="Contry of production" [formControl]="contryControl">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let contry of contrys" [value]="contry">
+              {{contry.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="contryControl.hasError('required')">Please choose a contry</mat-error>
+          <mat-hint>{{contryControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+
+        <!--select the ctype field -->
+        <mat-form-field *ngIf="selectControl.value.name === 'Type'">
+          <mat-select placeholder="type of product" [formControl]="typeControl">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{type.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="typeControl.hasError('required')">Please choose a type</mat-error>
+        </mat-form-field>
+
+        <!--select the type field -->
+        <mat-form-field *ngIf="selectControl.value.name === 'Test'">
+          <mat-select placeholder="Testing organisation" [formControl]="testControl">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let test of tests" [value]="test">
+              {{test.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="testControl.hasError('required')">Please choose a testing organisation</mat-error>
+        </mat-form-field>
+
+        <button mat-button
+                [disabled]="!testControl.value && !contryControl.value && !typeControl.value"
+                (click)="searchProduct()">Search</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="MyProduct !== []">
+    <mat-list role="list">
+      <mat-list-item role="listitem"
+                     *ngFor="let oneProduct of MyProduct"
+                     mat-ripple >
+        <div class="items_cont" (click)="getApplicant(oneProduct)">
+          <p>Id : {{oneProduct.productid}}</p>
+          <p *ngIf="oneProduct.name">Name: {{oneProduct.name}}</p>
+          <p>Type : {{oneProduct.type}}</p>
+          <p>Date of production : {{oneProduct.date | date : 'dd.MMM.yyyy'}}</p>
+          <p>Testing organisation : {{oneProduct.test_standard}}</p>
+          <p>Contry of production : {{oneProduct.contry_of_production}}</p>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
+
+<!--This is the template when you whant to get the informations of one product-->
+<div class="oneProduct_cont" *ngIf="!showRecords">
+  <button mat-button
+          class="retour"
+          (click)="closeProduct()"><img src="../../../assets/icons/left-arrow.svg"></button>
+  <mat-card><h2>One product</h2></mat-card>
+  <mat-card>
+    <mat-card-title>Product information</mat-card-title>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <p>Id : {{theProduct.productid}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Name : {{theProduct.name}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Type : {{theProduct.type}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Testing Organisation : {{theProduct.test_standard}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Contry of production : {{theProduct.contry_of_production}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Date of creation : {{theProduct.date | date : 'dd.MMM.yyyy'}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Register by : {{theApplicant.name}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button class="delete" (click)="deleteProduct()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Applicant information</mat-card-title>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <p>Id : {{theApplicant.userid}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.name">
+          <p>Name : {{theApplicant.name}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <p>Email : {{theApplicant.email}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.adress">
+          <p>Address : {{theApplicant.address}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.phone_number">
+          <p>Phone number : {{theApplicant.phone_number}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.contry">
+          <p>Contry : {{theApplicant.contry}}</p>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="theApplicant.job">
+          <p>Post in the compagny : {{theApplicant.job}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

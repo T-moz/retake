@@ -1,0 +1,27 @@
+.my_cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //width: 100%;
+  padding: 1em;
+  color: #444444;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60%;
+    margin-bottom: 2em;
+
+    .items_cont{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      p{
+        margin-right: 0.3em;
+        margin-left: 0.3em;
+      }
+    }
+  }
+}

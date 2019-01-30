@@ -1,0 +1,49 @@
+.applicants_cont{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //width: 100%;
+  padding: 1em;
+  color: #444444;
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60%;
+    max-width: 95%;
+    margin-bottom: 2em;
+
+
+    .mat-list-base .mat-list-item{
+      height: auto;
+      margin-bottom: 0.5em;
+    }
+
+    .items_cont{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100%;
+      flex-wrap: wrap;
+      height: auto;
+
+      p{
+        margin-right: 0.3em;
+        margin-left: 0.3em;
+      }
+    }
+  }
+}
+
+.retour{
+  position: absolute;
+  top: 6em;
+  left: 1em;
+  //height: 2em;
+  img{
+    height: 2em;
+    width: 2em;
+  }
+}
